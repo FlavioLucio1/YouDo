@@ -32,10 +32,20 @@
       <!--  -->
     </v-navigation-drawer>
 
-    <v-app-bar app>
-      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
 
-      <v-toolbar-title>Application</v-toolbar-title>
+
+    <v-app-bar  color="#00838F" dark shrink-on-scroll prominent src="https://picsum.photos/1920/1080?random"
+          fade-img-on-scroll scroll-threshold="500" app>
+
+          <template v-slot:img="{ props }">
+            <v-img v-bind="props" gradient="to top right, rgba(0, 151, 167, .7), rgba(25,32,72,.7)"></v-img>
+          </template>
+        
+           <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon> 
+        
+          <v-app-bar-title>Title</v-app-bar-title>
+        
+               
     </v-app-bar>
 
     <v-main>
