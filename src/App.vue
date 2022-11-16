@@ -43,7 +43,13 @@
         
            <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon> 
         
-          <v-app-bar-title>Title</v-app-bar-title>
+          <v-app-bar-title class="text-no-wrap">
+            Tarefas           
+              <v-icon color="00838F" small>
+                mdi-checkbox-multiple-marked-outline
+              </v-icon>
+          </v-app-bar-title>
+
         
                
     </v-app-bar>
@@ -76,5 +82,9 @@
     height:30px;
     border-radius:100px;
   }
+
+  .v-app-bar-title__content{
+  width: 200px !important;
+}
 </style>
 

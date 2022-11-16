@@ -1,16 +1,32 @@
 <template>
-  <hello-world />
+<div>
+
+    <v-list
+      subheader
+      flat
+    >
+
+      <v-list-item-group
+        v-model="settings"
+        multiple
+      >
+        <Tarefa />
+        <Tarefa />
+
+      </v-list-item-group>
+    </v-list>
+    </div>
 </template>
 
 <script lang="ts">
   import Vue from 'vue'
-  import HelloWorld from '../components/HelloWorld.vue'
+  import Tarefa from '../components/Tarefas/Tarefa.vue'
 
   export default Vue.extend({
     name: 'Home',
 
     components: {
-      HelloWorld,
+        Tarefa
     },
   })
 </script>
