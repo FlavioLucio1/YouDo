@@ -7,7 +7,7 @@
     >
             <v-col
           cols="12"
-          sm="6"
+          sm="3"
         >
           <v-text-field
             v-model="campoInput"
