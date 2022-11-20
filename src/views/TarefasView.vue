@@ -22,8 +22,8 @@
         multiple
       >
         <div
-            v-for="tarefa, index in tarefas"
-            :key="index">
+            v-for="tarefa, index in $store.state.tarefas"
+            :key="index">     <!-- o $store.state serve para acessar os dados lá do vuex-->
            <Tarefa :tarefa="tarefa"/>              <!--index é só uma referencia da posição do vfor. é necessário para funcionar|  ele usa os : para conseguir passar o objeto,sem isso é como se ele estivesse passando uma string -->
 
         </div>
@@ -44,25 +44,14 @@
     },
       data(){
         return{
-          campoInput: null,
-          tarefas: [
-            {titulo:"teste1", concluido:false},
-            {titulo:"TESTANDO", concluido:true},
-            {titulo:"ir no mercado", concluido:false},
-            {titulo:"teste4", concluido:false},
-            {titulo:"teste4", concluido:true}
-            ],
-          
+          campoInput: null,          
         }
       },
       methods:{
         handleAddTarefa()
         {
-          if(this.campoInput)
-          {
-            this.tarefas.push({titulo:this.campoInput, concluido:false})
-            this.campoInput = null;
-          }
+          this.$store.commit('AddTarefa',this.campoInput);
+          this.campoInput = null;
         }
       }
   })
