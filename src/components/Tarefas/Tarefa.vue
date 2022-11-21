@@ -17,11 +17,26 @@
           </v-list-item-content>
 
           <v-list-item-action>
-            <v-btn icon @click.stop="HandleRemoveTarefa(tarefa)">
-              <v-icon color="red lighten-1">mdi-trash-can</v-icon>
+            
+          <v-menu offset-y>
+      <template v-slot:activator="{ on, attrs }">
+            <v-btn icon @click.stop="" v-bind="attrs"
+          v-on="on">   <!--HandleRemoveTarefa(tarefa)-->
+              <v-icon color="teal darken-2">mdi-dots-vertical</v-icon>
             </v-btn>
-          </v-list-item-action>
-          
+
+      </template>
+      <v-list>
+        <v-list-item
+          v-for="(item, index) in menuTarefa"
+          :key="index"
+        >
+        
+          <v-list-item-title @click.stop="HandleRemoveTarefa(tarefa)"><v-icon :color="item.color">{{item.icon}}</v-icon> <span class="red--text text--darken-1"> {{ item.title }}  </span></v-list-item-title> 
+        </v-list-item>
+      </v-list>
+    </v-menu>
+                    </v-list-item-action>
       </template>
     </v-list-item>
     <v-divider></v-divider>
@@ -35,6 +50,8 @@ import Tarefa from "../../models/Tarefa";
 @Component
 export default class Tarefaa extends Vue {
   @Prop() public tarefa!: Tarefa;
+
+  public menuTarefa = [{title:"Excluir",icon:"mdi-trash-can",color:"red darken-1"}]
 
   //nada: Tarefa= new Tarefa();
   
