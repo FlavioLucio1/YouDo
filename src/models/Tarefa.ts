@@ -1,5 +1,5 @@
 export default class Tarefa {
-    public id: any;
+    public id = 0;
     public titulo = "" ;  
     public concluido = false;
 }

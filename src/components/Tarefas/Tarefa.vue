@@ -17,11 +17,11 @@
           </v-list-item-content>
 
           <v-list-item-action>
-            
-          <v-menu offset-y>
+            <tarefaMenu/>
+          <!-- <v-menu offset-y :close-on-content-click="true">
       <template v-slot:activator="{ on, attrs }">
             <v-btn icon @click.stop="" v-bind="attrs"
-          v-on="on">   <!--HandleRemoveTarefa(tarefa)-->
+          v-on="on">   
               <v-icon color="teal darken-2">mdi-dots-vertical</v-icon>
             </v-btn>
 
@@ -35,8 +35,8 @@
           <v-list-item-title @click.stop="HandleRemoveTarefa(tarefa)"><v-icon :color="item.color">{{item.icon}}</v-icon> <span class="red--text text--darken-1"> {{ item.title }}  </span></v-list-item-title> 
         </v-list-item>
       </v-list>
-    </v-menu>
-                    </v-list-item-action>
+    </v-menu> -->
+        </v-list-item-action>
       </template>
     </v-list-item>
     <v-divider></v-divider>
@@ -46,18 +46,22 @@
 <script lang="ts">
 import { Vue, Component,Prop } from "vue-property-decorator";
 import Tarefa from "../../models/Tarefa";
+import TarefaMenu from "./TarefaMenu.vue"
 
-@Component
+@Component({
+  components: {
+    TarefaMenu
+  }
+})
 export default class Tarefaa extends Vue {
   @Prop() public tarefa!: Tarefa;
-
-  public menuTarefa = [{title:"Excluir",icon:"mdi-trash-can",color:"red darken-1"}]
-
+ 
   //nada: Tarefa= new Tarefa();
   
-  HandleRemoveTarefa(tarefa:Tarefa)
+  public HandleRemoveTarefa(tarefa:Tarefa)
   {
-    this.$store.commit('RemoveTarefa',tarefa)
+    this.$store.commit('RemoveTarefa',tarefa);
+    console.log(tarefa)
   }
   // testeee(){
   //   console.log(this.nada);
