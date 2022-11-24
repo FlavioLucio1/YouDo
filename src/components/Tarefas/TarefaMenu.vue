@@ -16,15 +16,17 @@
         <v-list-item
           v-for="(item, index) in menuTarefa"
           :key="index"
-          @click= "testando()"                
+          @click= "item.AoClicar()"                
         >   <!--"item.AoClicar()" -->
-         <v-icon left :color="`${item.color} darken-1`">{{item.icon}}</v-icon>
+         <v-icon left :color="`${item.color} darken-1`">{{item.icon}} </v-icon>
           <v-list-item-title> <span :class="`${item.color}--text text--darken-1`"> {{ item.title }}  </span></v-list-item-title>
         </v-list-item>
       </v-list>
     </v-menu>
-        <DialogEditar v-if="teste" :dialogo="teste"/>  <!--parei aqui, melhorar isso -->
-
+    <DialogEditar v-if="menuTarefa.find(x => x.title == 'Editar').ativarDialog == true" :dialogo="true"/>   <!-- v-if="menuTarefa.find(x => x.title == 'Editar').ativarDialog == true"/>   -->
+       <!-- <DialogEditar v-if="teste" :dialogo="teste"/>  parei aqui, melhorar isso -->
+        <!-- <DialogEditar v-if="menuTarefa.find(x => x.title == 'Editar').ativarDialog == true"> -->
+          <!-- {{menuTarefa.find(x => x.title == 'Editar').ativarDialog == true}} -->
     </div>
 </template>
 
@@ -41,7 +43,7 @@ import DialogEditar from "../MenuDialogs/DialogEditar.vue";
 export default class TarefaMenu extends Vue{
     public teste = false;
     public menuTarefa = [{title:"Excluir",icon:"mdi-trash-can",color:"red",ativarDialog:false,AoClicar(){this.ativarDialog=true}},
-                       {title:"Editar",icon:"mdi-pencil",color:"green",AoClicar(){console.log("teste2")}}]
+                       {title:"Editar",icon:"mdi-pencil",color:"green",ativarDialog:false,AoClicar(){console.log(this.ativarDialog=true)}}]
 
     testando()
     {
