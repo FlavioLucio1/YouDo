@@ -28,6 +28,7 @@
           <v-text-field
             label="Tarefa"
             outlined
+            v-model="tarefa.titulo"
           ></v-text-field> <!--ele adicionou aqui o atributo class= "px-3" para fazer um efeito similar ao cols="12"-->
         </v-col>
         <v-card-actions>
@@ -35,14 +36,14 @@
           <v-btn
             color="red darken-1"
             text
-            @click="dialog = false"
+            @click="$emit('fechaDialog')"
           >
             Cancelar
           </v-btn>
           <v-btn
             color="teal darken-2"
             text
-            @click="dialog = false"
+            @click="dialog = true"
           >
             Editar
           </v-btn>
@@ -52,14 +53,18 @@
     </div>
 </template>
 
-<script>
-  export default {
-    props: ['dialogo'],
-    data () {
-      return {
-        dialog: this.dialogo,
-      }
-    },
+
+<script lang="ts">
+
+import { Vue, Component,Prop } from "vue-property-decorator";
+import Tarefa from "../../models/Tarefa";
+
+@Component
+  export default class dialogoEditarTarefa extends Vue {
+    @Prop() public tarefa!: Tarefa;
+
+    dialog = true;
+    tituloTemp = "";
   }
 </script>
 

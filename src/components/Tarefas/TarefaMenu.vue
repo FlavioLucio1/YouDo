@@ -23,7 +23,7 @@
         </v-list-item>
       </v-list>
     </v-menu>
-    <DialogEditar v-if="menuTarefa.find(x => x.title == 'Editar').ativarDialog == true" :dialogo="true"/>   <!-- v-if="menuTarefa.find(x => x.title == 'Editar').ativarDialog == true"/>   -->
+    <DialogEditar v-if="menuTarefa.find(x => x.title == 'Editar').ativarDialog == true"  @fechaDialog="testando('Editar')" :tarefa="tarefa"/>   <!-- v-if="menuTarefa.find(x => x.title == 'Editar').ativarDialog == true"/>   -->
        <!-- <DialogEditar v-if="teste" :dialogo="teste"/>  parei aqui, melhorar isso -->
         <!-- <DialogEditar v-if="menuTarefa.find(x => x.title == 'Editar').ativarDialog == true"> -->
           <!-- {{menuTarefa.find(x => x.title == 'Editar').ativarDialog == true}} -->
@@ -32,7 +32,8 @@
 
 
 <script lang="ts">
-import { Vue, Component } from "vue-property-decorator";
+import Tarefa from "@/models/Tarefa";
+import { Vue, Component,Prop } from "vue-property-decorator";
 import DialogEditar from "../MenuDialogs/DialogEditar.vue";
 
 @Component({
@@ -41,13 +42,16 @@ import DialogEditar from "../MenuDialogs/DialogEditar.vue";
   }
 })
 export default class TarefaMenu extends Vue{
+    @Prop() public tarefa!: Tarefa;
     public teste = false;
     public menuTarefa = [{title:"Excluir",icon:"mdi-trash-can",color:"red",ativarDialog:false,AoClicar(){this.ativarDialog=true}},
                        {title:"Editar",icon:"mdi-pencil",color:"green",ativarDialog:false,AoClicar(){console.log(this.ativarDialog=true)}}]
 
-    testando()
+    testando(funcao : string)
     {
-      this.teste = true;
+          //eslint-disable-next-line
+         this.menuTarefa.find(x => x.title == funcao)!.ativarDialog = false; 
+          console.log(this.tarefa.titulo);
     }
 }
 </script>

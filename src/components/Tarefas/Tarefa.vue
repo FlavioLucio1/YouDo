@@ -17,7 +17,7 @@
           </v-list-item-content>
 
           <v-list-item-action>
-            <tarefaMenu/>
+            <tarefaMenu :tarefa="tarefa"/>
           <!-- <v-menu offset-y :close-on-content-click="true">
       <template v-slot:activator="{ on, attrs }">
             <v-btn icon @click.stop="" v-bind="attrs"
