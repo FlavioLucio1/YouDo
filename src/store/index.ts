@@ -35,6 +35,14 @@ export default new Vuex.Store({
           state.tarefas.splice(index,1);
         }  
       }
+    },
+    EditaTarefa(state,novaTarefa)
+    {
+      if(novaTarefa)
+      {
+        const tarefa = state.tarefas.filter(tarefa => tarefa.id == novaTarefa.id)[0];
+        tarefa.titulo = novaTarefa.titulo;
+      }
     }
   },    //no mutation podemos alterar um valor do state,criando funções para fazer isso. (obrigatório ter como parametro pelo menos o state que deseja alterar)
   actions: {

@@ -28,7 +28,7 @@
           <v-text-field
             label="Tarefa"
             outlined
-            v-model="tarefa.titulo"
+            v-model="novoTitulo"
           ></v-text-field> <!--ele adicionou aqui o atributo class= "px-3" para fazer um efeito similar ao cols="12"-->
         </v-col>
         <v-card-actions>
@@ -43,7 +43,7 @@
           <v-btn
             color="teal darken-2"
             text
-            @click="dialog = true"
+            @click="$store.commit('EditaTarefa',{id: tarefa.id,titulo:novoTitulo,concluido:tarefa.concluido}), $emit('fechaDialog')"
           >
             Editar
           </v-btn>
@@ -64,7 +64,12 @@ import Tarefa from "../../models/Tarefa";
     @Prop() public tarefa!: Tarefa;
 
     dialog = true;
-    tituloTemp = "";
+    novoTitulo = "";
+    tarefaEditada = new Tarefa();
+    created(){
+      this.novoTitulo = this.tarefa.titulo;
+    }
+   // EditarTarefa()
   }
 </script>
 
