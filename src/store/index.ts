@@ -29,11 +29,14 @@ export default new Vuex.Store({
      // state.tarefas = state.tarefas.filter(tarefa => tarefa.id !== id);
       if(tarefa)
       {
-        const index = state.tarefas.indexOf(tarefa);
-        if(index > -1)
-        {
-          state.tarefas.splice(index,1);
-        }  
+        //const tarefaParaExcluir = state.tarefas.filter(x => x.id == tarefa.id)[0];
+       // const index = state.tarefas.indexOf(tarefa);
+       // if(tarefaParaExcluir)
+       // {
+          //console.log("caiu remove2");
+         // state.tarefas.splice(index,1);
+        //}  
+        state.tarefas = state.tarefas.filter(x => x.id !== tarefa.id);
       }
     },
     EditaTarefa(state,novaTarefa)

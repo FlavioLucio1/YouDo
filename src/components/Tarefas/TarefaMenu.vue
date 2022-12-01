@@ -23,10 +23,11 @@
         </v-list-item>
       </v-list>
     </v-menu>
-    <DialogEditar v-if="menuTarefa.find(x => x.title == 'Editar').ativarDialog == true"  @fechaDialog="testando('Editar')" :tarefa="tarefa"/>   <!-- v-if="menuTarefa.find(x => x.title == 'Editar').ativarDialog == true"/>   -->
+    <DialogEditar v-if="menuTarefa.find(x => x.title == 'Editar').ativarDialog == true"  @fechaDialog="Fechar('Editar')" :tarefa="tarefa"/>   <!-- v-if="menuTarefa.find(x => x.title == 'Editar').ativarDialog == true"/>   -->
        <!-- <DialogEditar v-if="teste" :dialogo="teste"/>  parei aqui, melhorar isso -->
         <!-- <DialogEditar v-if="menuTarefa.find(x => x.title == 'Editar').ativarDialog == true"> -->
           <!-- {{menuTarefa.find(x => x.title == 'Editar').ativarDialog == true}} -->
+    <DialogExcluir v-if="menuTarefa.find(x => x.title == 'Excluir').ativarDialog == true"  @fechaDialog="Fechar('Excluir')" :tarefa="tarefa"/> 
     </div>
 </template>
 
@@ -35,10 +36,11 @@
 import Tarefa from "@/models/Tarefa";
 import { Vue, Component,Prop } from "vue-property-decorator";
 import DialogEditar from "../MenuDialogs/DialogEditar.vue";
+import DialogExcluir from "../MenuDialogs/DialogExcluir.vue";
 
 @Component({
   components: {
-    DialogEditar
+    DialogEditar,DialogExcluir
   }
 })
 export default class TarefaMenu extends Vue{
@@ -47,7 +49,7 @@ export default class TarefaMenu extends Vue{
     public menuTarefa = [{title:"Excluir",icon:"mdi-trash-can",color:"red",ativarDialog:false,AoClicar(){this.ativarDialog=true}},
                        {title:"Editar",icon:"mdi-pencil",color:"green",ativarDialog:false,AoClicar(){console.log(this.ativarDialog=true)}}]
 
-    testando(funcao : string)
+    Fechar(funcao : string)
     {
           //eslint-disable-next-line
          this.menuTarefa.find(x => x.title == funcao)!.ativarDialog = false; 
