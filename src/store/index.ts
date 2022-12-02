@@ -1,5 +1,9 @@
+//está usando localbase https://www.npmjs.com/package/localbase
 import Vue from 'vue'
 import Vuex from 'vuex'
+import Localbase from 'localbase'
+
+const db = new Localbase('db')
 
 Vue.use(Vuex)
 
@@ -7,21 +11,34 @@ export default new Vuex.Store({
   state: {
     tarefas: [
       { id:1, titulo: "teste1", concluido: false },
-      { id: 2, titulo: "TESTANDO", concluido: true },
-      { id: 3, titulo: "ir no mercado", concluido: false },
-      { id: 4, titulo: "teste4", concluido: false },
-      { id: 5, titulo: "teste4", concluido: true }
+      // { id: 2, titulo: "TESTANDO", concluido: true },
+      // { id: 3, titulo: "ir no mercado", concluido: false },
+      // { id: 4, titulo: "teste4", concluido: false },
+      // { id: 5, titulo: "teste4", concluido: true }
     ]
   }, //no state podemos criar valores que podem ser acessados globalmente no nosso projeto
   getters: {
   },
   mutations: {
+    GetTarefas(state)
+    {
+      // eslint-disable-next-line
+      return db.collection('tarefas').get().then((tarefas : any) => { state.tarefas = tarefas});
+    },
     AddTarefa(state,titulo) {
       if (titulo) {
-        state.tarefas.push({ 
+        db.collection('tarefas').add({
           id: new Date().getTime(),
-          titulo, 
-          concluido: false })
+          titulo: titulo,
+          concluido: false
+        })
+
+      //   método antigo, antes do localbase
+      //   state.tarefas.push({ 
+      //     id: new Date().getTime(),
+      //     titulo, 
+      //     concluido: false })
+      // 
       }
     },
     RemoveTarefa(state,tarefa)   //se quiser fazer sem passar o objeto tarefa é só passar o id e usar a função que o professor usou comentada abaixo

@@ -40,12 +40,17 @@
     name: 'Home',
 
     components: {
-        Tarefa
+        Tarefa,
+
     },
       data(){
         return{
-          campoInput: null,          
+          campoInput: null,
+          tarefas: Array<Tarefa>()      
         }
+      },
+      created(){
+          this.$store.commit('GetTarefas');
       },
       methods:{
         handleAddTarefa()
