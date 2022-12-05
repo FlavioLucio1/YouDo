@@ -43,7 +43,7 @@
           <v-btn
             color="teal darken-2"
             text
-            @click="$store.commit('EditaTarefa',{id: tarefa.id,titulo:novoTitulo,concluido:tarefa.concluido}), $emit('fechaDialog')"
+            @click="$store.dispatch('EditaTarefa',{id: tarefa.id,titulo:novoTitulo,concluido:tarefa.concluido}), $emit('fechaDialog')"
           >
             Editar
           </v-btn>

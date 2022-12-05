@@ -41,33 +41,36 @@ export default new Vuex.Store({
       //     concluido: false })
       //
       }
-    },
-    RemoveTarefa(state,tarefaId)   //se quiser fazer sem passar o objeto tarefa é só passar o id e usar a função que o professor usou comentada abaixo
-    {
-     // state.tarefas = state.tarefas.filter(tarefa => tarefa.id !== id);
-      if(tarefaId)
-      {
-        //const tarefaParaExcluir = state.tarefas.filter(x => x.id == tarefa.id)[0];
-       // const index = state.tarefas.indexOf(tarefa);
-       // if(tarefaParaExcluir)
-       // {
-          //console.log("caiu remove2");
-         // state.tarefas.splice(index,1);
-        //}  
-        //abaixo a forma antiga que tirava somente da lisca local
-        //state.tarefas = state.tarefas.filter(x => x.id !== tarefa.id);
-        const id = tarefaId;
-        db.collection('tarefas').doc({ id }).delete();
-      }
-    },
-    EditaTarefa(state,novaTarefa)
-    {
-      if(novaTarefa)
-      {
-        const tarefa = state.tarefas.filter(tarefa => tarefa.id == novaTarefa.id)[0];
-        tarefa.titulo = novaTarefa.titulo;
-      }
     }
+    // RemoveTarefa(state,tarefaId)   //se quiser fazer sem passar o objeto tarefa é só passar o id e usar a função que o professor usou comentada abaixo
+    // {
+    //  // state.tarefas = state.tarefas.filter(tarefa => tarefa.id !== id);
+    //   if(tarefaId)
+    //   {
+    //     //const tarefaParaExcluir = state.tarefas.filter(x => x.id == tarefa.id)[0];
+    //    // const index = state.tarefas.indexOf(tarefa);
+    //    // if(tarefaParaExcluir)
+    //    // {
+    //       //console.log("caiu remove2");
+    //      // state.tarefas.splice(index,1);
+    //     //}  
+    //     //abaixo a forma antiga que tirava somente da lisca local
+    //     //state.tarefas = state.tarefas.filter(x => x.id !== tarefa.id);
+    //     const id = tarefaId;
+    //     db.collection('tarefas').doc({ id: id }).delete();
+    //   }
+    // }
+    //  EditaTarefa(state,novaTarefa)
+    // {
+    //   if(novaTarefa)
+    //   {
+    //     db.collection('tarefas').doc({ id: novaTarefa.id }).update({
+    //       titulo: novaTarefa.titulo
+    //     })
+    //    // const tarefa = state.tarefas.filter(tarefa => tarefa.id == novaTarefa.id)[0];
+    //    // tarefa.titulo = novaTarefa.titulo;
+    //   }
+    // }
   },    //no mutation podemos alterar um valor do state,criando funções para fazer isso. (obrigatório ter como parametro pelo menos o state que deseja alterar)
   actions: {
     async AddTarefa({commit},titulo)
@@ -76,8 +79,15 @@ export default new Vuex.Store({
       await commit('GetTarefas');
     },
     async RemoveTarefa({ commit },tarefaId) {
-      await commit('RemoveTarefa', tarefaId);
-      await commit('GetTarefas');
+      db.collection('tarefas').doc({ id: tarefaId }).delete().then(() =>{ commit('GetTarefas')});
+      //await commit('RemoveTarefa', tarefaId);
+     // await commit('GetTarefas');
+    },
+    async EditaTarefa({commit},novaTarefa)
+    {
+      db.collection('tarefas').doc({ id: novaTarefa.id }).update({
+        titulo: novaTarefa.titulo
+      }).then(() =>{ commit('GetTarefas')});
     }
   },
   modules: {
