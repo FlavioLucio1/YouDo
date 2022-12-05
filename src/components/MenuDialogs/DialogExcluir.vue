@@ -34,8 +34,9 @@
           <v-btn
             color="red darken-1"
             text
-            @click="$store.commit('RemoveTarefa',{id: tarefa.id,titulo:novoTitulo,concluido:tarefa.concluido}), $emit('fechaDialog')"
-          >
+            @click="$store.dispatch('RemoveTarefa',tarefa.id), $emit('fechaDialog')" 
+          >   
+          <!-- {id: tarefa.id,titulo:novoTitulo,concluido:tarefa.concluido} -->
             Excluir
           </v-btn>
         </v-card-actions>

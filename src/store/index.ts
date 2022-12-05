@@ -23,7 +23,8 @@ export default new Vuex.Store({
     GetTarefas(state)
     {
       // eslint-disable-next-line
-      return db.collection('tarefas').get().then((tarefas : any) => { state.tarefas = tarefas});
+      db.collection('tarefas').get().then((tarefas : any) => { state.tarefas = tarefas});
+      console.log("entrou");
     },
     AddTarefa(state,titulo) {
       if (titulo) {
@@ -38,13 +39,13 @@ export default new Vuex.Store({
       //     id: new Date().getTime(),
       //     titulo, 
       //     concluido: false })
-      // 
+      //
       }
     },
-    RemoveTarefa(state,tarefa)   //se quiser fazer sem passar o objeto tarefa é só passar o id e usar a função que o professor usou comentada abaixo
+    RemoveTarefa(state,tarefaId)   //se quiser fazer sem passar o objeto tarefa é só passar o id e usar a função que o professor usou comentada abaixo
     {
      // state.tarefas = state.tarefas.filter(tarefa => tarefa.id !== id);
-      if(tarefa)
+      if(tarefaId)
       {
         //const tarefaParaExcluir = state.tarefas.filter(x => x.id == tarefa.id)[0];
        // const index = state.tarefas.indexOf(tarefa);
@@ -53,7 +54,10 @@ export default new Vuex.Store({
           //console.log("caiu remove2");
          // state.tarefas.splice(index,1);
         //}  
-        state.tarefas = state.tarefas.filter(x => x.id !== tarefa.id);
+        //abaixo a forma antiga que tirava somente da lisca local
+        //state.tarefas = state.tarefas.filter(x => x.id !== tarefa.id);
+        const id = tarefaId;
+        db.collection('tarefas').doc({ id }).delete();
       }
     },
     EditaTarefa(state,novaTarefa)
@@ -66,6 +70,15 @@ export default new Vuex.Store({
     }
   },    //no mutation podemos alterar um valor do state,criando funções para fazer isso. (obrigatório ter como parametro pelo menos o state que deseja alterar)
   actions: {
+    async AddTarefa({commit},titulo)
+    {
+      await commit('AddTarefa',titulo);
+      await commit('GetTarefas');
+    },
+    async RemoveTarefa({ commit },tarefaId) {
+      await commit('RemoveTarefa', tarefaId);
+      await commit('GetTarefas');
+    }
   },
   modules: {
   }

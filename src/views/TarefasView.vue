@@ -55,8 +55,10 @@
       methods:{
         handleAddTarefa()
         {
-          this.$store.commit('AddTarefa',this.campoInput);
+          this.$store.dispatch('AddTarefa', this.campoInput); //dispatch serve para ativar as actions do vuex
+        // await this.$store.commit('AddTarefa',this.campoInput); forma que eu fiz nessa linha e na debaixo
           this.campoInput = null;
+       //  await this.$store.commit('GetTarefas');
         }
       }
   })
