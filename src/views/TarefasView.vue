@@ -29,11 +29,13 @@
         </div>
       </v-list-item-group>
     </v-list>
+    <ListaTarefa />
     </div>
 </template>
 
 <script lang="ts">
-  import Vue from 'vue'
+  import ListaTarefa from '@/components/Tarefas/ListaTarefa.vue';
+import Vue from 'vue'
   import Tarefa from '../components/Tarefas/Tarefa.vue'
 
   export default Vue.extend({
@@ -41,6 +43,7 @@
 
     components: {
         Tarefa,
+        ListaTarefa,
 
     },
       data(){
