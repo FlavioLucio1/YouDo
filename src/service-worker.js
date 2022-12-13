@@ -1,6 +1,7 @@
-  
-self.__precacheManifest = [].concat(self.__precacheManifest || []);
-workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
+import { precacheAndRoute } from 'workbox-precaching/precacheAndRoute';
+
+self._precacheManifest = [].concat(self._precacheManifest || []);
+precacheAndRoute(self.__WB_MANIFEST);
 
 self.addEventListener("message", (event) => {
   if (event.data.action == "SKIP_WAITING") self.skipWaiting();

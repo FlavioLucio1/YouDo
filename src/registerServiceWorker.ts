@@ -1,5 +1,7 @@
-/* eslint-disable */
+/* eslint-disable no-console */
+
 import { register } from 'register-service-worker'
+import Swal from 'sweetalert2'
 
 if (process.env.NODE_ENV === 'production') {
   register(`${process.env.BASE_URL}service-worker.js`, {
@@ -16,15 +18,30 @@ if (process.env.NODE_ENV === 'production') {
       console.log('Content has been cached for offline use.')
     },
     updatefound () {
-      console.log('New content is downloading.')
+      Swal.fire({
+        toast: true,
+        icon: 'warning',
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 2000,
+        timerProgressBar: true,
+        title: 'Baixando atualizações...'
+      });
     },
     updated (registration) {
-      console.log('New content is available; please refresh.');
-      //if (window.confirm("Uma nova versão está diponível, deseja atualizar?")) {
+      Swal.fire({
+        toast: true,
+        icon: 'warning',
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 1500,
+        timerProgressBar: true,
+        title: 'Atualizando...'
+      }).finally(() => {
         const worker = registration.waiting;
         worker!.postMessage({ action: "SKIP_WAITING" });
         window.location.reload();
-      //}
+      });
     },
     offline () {
       console.log('No internet connection found. App is running in offline mode.')
