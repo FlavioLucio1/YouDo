@@ -4,8 +4,18 @@ module.exports = defineConfig({
     'vuetify'
   ],
   pwa: {
+    themeColor: "#4A70A8",
+    msTileColor: "#4A70A8",
+    name: "Edital",
+    appleMobileWebAppCapable: 'yes',
+    appleMobileWebAppStatusBarStyle: 'white',
+    workboxPluginMode: "InjectManifest",
     workboxOptions: {
-        skipWaiting: true
+      swSrc: "./src/service-worker.js"
+    },
+    manifestOptions: {
+      background_color: "#4A70A8",
+      theme_color: "#4A70A8",
     }
-}
+  }
 })
