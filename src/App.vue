@@ -7,10 +7,10 @@
       <v-list-item>
         <v-list-item-content>
           <v-list-item-title class="text-h6">
-            Kalled To-Do
+            YouDo
           </v-list-item-title>
           <v-list-item-subtitle>
-            Lista de tarefas
+           <p class="font-italic"> você se planeja... Você Faz! </p>
           </v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
