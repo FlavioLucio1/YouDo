@@ -10,7 +10,7 @@
             YouDo
           </v-list-item-title>
           <v-list-item-subtitle>
-           <p class="font-italic"> você se planeja... Você Faz! </p>
+           <p class="font-italic"> Você se planeja... você Faz! </p>
           </v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
