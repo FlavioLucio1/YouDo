@@ -2,7 +2,7 @@
   <div>
     <v-list-item
     :class="{'teal lighten-5': tarefa.concluido}"
-    @click="tarefa.concluido = !tarefa.concluido"
+    @click= SelecionarTarefa()
     >        <!-- ele coloca os : na classe e com isso é como se ele funcionasse como um if, onde ele só vai adicionar a classe se a condição for verdadeira -->
         <template v-slot:default="{}">
           <v-list-item-action>
@@ -63,9 +63,9 @@ export default class Tarefaa extends Vue {
     this.$store.commit('RemoveTarefa',tarefa);
     console.log(tarefa)
   }
-  // testeee(){
-  //   console.log(this.nada);
-  // }
+  public SelecionarTarefa(){
+    this.$store.dispatch('EditaTarefa',{id: this.tarefa.id,titulo:this.tarefa.titulo,concluido:!this.tarefa.concluido});
+  }
 }
 </script>
 

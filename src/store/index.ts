@@ -86,7 +86,7 @@ export default new Vuex.Store({
     async EditaTarefa({commit},novaTarefa)
     {
       db.collection('tarefas').doc({ id: novaTarefa.id }).update({
-        titulo: novaTarefa.titulo
+        titulo: novaTarefa.titulo,concluido: novaTarefa.concluido
       }).then(() =>{ commit('GetTarefas')});
     }
   },
