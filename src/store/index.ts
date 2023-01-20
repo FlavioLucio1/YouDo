@@ -1,3 +1,4 @@
+/* eslint-disable */
 //está usando localbase https://www.npmjs.com/package/localbase
 import Vue from 'vue'
 import Vuex from 'vuex'
@@ -15,7 +16,7 @@ export default new Vuex.Store({
       // { id: 3, titulo: "ir no mercado", concluido: false },
       // { id: 4, titulo: "teste4", concluido: false },
       // { id: 5, titulo: "teste4", concluido: true }
-    ]
+    ],
   }, //no state podemos criar valores que podem ser acessados globalmente no nosso projeto
   getters: {
   },
@@ -34,12 +35,28 @@ export default new Vuex.Store({
           concluido: false
         })
 
+
       //   método antigo, antes do localbase
       //   state.tarefas.push({ 
       //     id: new Date().getTime(),
       //     titulo, 
       //     concluido: false })
       //
+      }
+    },
+    ExcluirTodasTarefas(state,tarefas)
+    {
+      db.collection('tarefas').delete();
+    },
+
+    ReadicionarTarefas(state,tarefa)
+    {
+      if (tarefa) {
+        db.collection('tarefas').add({
+          id: tarefa.id,
+          titulo: tarefa.titulo,
+          concluido: tarefa.concluido
+        })
       }
     }
     // RemoveTarefa(state,tarefaId)   //se quiser fazer sem passar o objeto tarefa é só passar o id e usar a função que o professor usou comentada abaixo
@@ -87,9 +104,19 @@ export default new Vuex.Store({
     {
       db.collection('tarefas').doc({ id: novaTarefa.id }).update({
         titulo: novaTarefa.titulo,concluido: novaTarefa.concluido
+
       }).then(() =>{ commit('GetTarefas')});
+    },
+    async ReordenarTarefas({commit},tarefas)
+    {
+      db.collection('tarefas').delete().then(() =>{ 
+          tarefas.forEach((tarefa:any) => {
+             commit('ReadicionarTarefas',tarefa);
+          }).finally(()=>{commit('GetTarefas')});
+           });
     }
   },
+ 
   modules: {
   }
 })

@@ -1,7 +1,6 @@
 <template>
-<div>
-
-    <v-list
+  <div>
+     <v-list
       subheader
       flat
     >
@@ -17,39 +16,25 @@
             @keyup.enter="handleAddTarefa"
           ></v-text-field>
         </v-col>
-
-      <v-list-item-group
-        multiple
-      >
-        <div
-            v-for="tarefa, index in $store.state.tarefas"
-            :key="index">     <!-- o $store.state serve para acessar os dados lá do vuex-->
-           <Tarefa :tarefa="tarefa"/>              <!--index é só uma referencia da posição do vfor. é necessário para funcionar|  ele usa os : para conseguir passar o objeto,sem isso é como se ele estivesse passando uma string -->
-
-        </div>
-      </v-list-item-group>
-    </v-list>
+         </v-list>
     <ListaTarefa />
-    </div>
+  </div>
 </template>
 
 <script lang="ts">
   import ListaTarefa from '@/components/Tarefas/ListaTarefa.vue';
-import Vue from 'vue'
-  import Tarefa from '../components/Tarefas/Tarefa.vue'
+  import Vue from 'vue'
 
   export default Vue.extend({
     name: 'Home',
 
     components: {
-        Tarefa,
         ListaTarefa,
 
     },
       data(){
         return{
-          campoInput: null,
-          tarefas: Array<Tarefa>()      
+          campoInput: null 
         }
       },
       created(){
