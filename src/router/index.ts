@@ -16,6 +16,13 @@ const routes: Array<RouteConfig> = [
 
     //abaixo uma outra forma de importar uma rota
     component: () => import('../views/SobreView.vue')
+  },
+  {
+    path: '/novidades',
+    name: 'Novidades',
+
+    //abaixo uma outra forma de importar uma rota
+    component: () => import('../views/NovidadesView.vue')
   }
 ]
 

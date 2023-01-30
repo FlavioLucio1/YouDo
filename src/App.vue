@@ -4,17 +4,26 @@
       v-model="drawer"
       app
     >
-      <v-list-item>
-        <v-list-item-content>
-          <v-list-item-title class="text-h6">
-            YouDo
-          </v-list-item-title>
-          <v-list-item-subtitle>
-           <p class="font-italic"> Você se planeja... você faz! </p>
-          </v-list-item-subtitle>
-        </v-list-item-content>
-      </v-list-item>
-      
+     <v-img dark src="./assets/menuBG.jpg" scroll-threshold="500" gradient="to top right, rgba(0, 151, 167, .7), rgba(25,32,72,.7)" class="pt-5 text-center">
+        
+        <v-avatar size="100">
+          <img
+            src="./assets/userTemp.png"
+            alt="John"
+          >
+        </v-avatar>
+        <v-list-item>
+          <v-list-item-content>
+            <v-list-item-title class="text-h6">
+              YouDo
+            </v-list-item-title>
+            <v-list-item-subtitle>
+            <p class="font-italic"> Você se planeja... você faz! </p>
+            </v-list-item-subtitle>
+          </v-list-item-content>
+        </v-list-item>
+      </v-img>
+
       <v-divider></v-divider>
       
       <v-list dense nav>
@@ -67,6 +76,7 @@
     data: () => ({
       opcoesMenu: [
         { title: 'Tarefas', icon: 'mdi-checkbox-marked-outline',linkPath:'/' },
+        { title: 'Novidades', icon: 'mdi-bell-ring',linkPath: '/novidades' },
         { title: 'Sobre', icon: 'mdi-help-box',linkPath: '/sobre' },
       ],
        drawer: null 
