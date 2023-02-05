@@ -1,28 +1,23 @@
 <template>
   <div>
-     <v-list
-      subheader
-      flat
-    >
-            <v-col
-          cols="12"
-          sm="3"
-        >
-          <v-text-field
-            v-model="campoInput"
-            label="Nova tarefa"
-            outlined
-            clearable
-            @keyup.enter="handleAddTarefa"
-          ></v-text-field>
-        </v-col>
-         </v-list>
+   <center><input-tarefa /></center> 
     <ListaTarefa />
+    <div v-if="!$store.state.tarefas.length">
+        <center>
+        <v-icon size="100" color="teal darken-2" class="animate__animated animate__bounceInUp">
+              mdi-check
+          </v-icon>
+          <div class="text-h5 teal--text text--darken-2 animate__animated animate__fadeInLeftBig">
+            Nenhuma Tarefa
+          </div>
+        </center>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
-  import ListaTarefa from '@/components/Tarefas/ListaTarefa.vue';
+  import InputTarefa from '@/components/InputTarefa.vue';
+import ListaTarefa from '@/components/Tarefas/ListaTarefa.vue';
   import Vue from 'vue'
 
   export default Vue.extend({
@@ -30,24 +25,12 @@
 
     components: {
         ListaTarefa,
+        InputTarefa,
 
-    },
-      data(){
-        return{
-          campoInput: null 
-        }
-      },
+    },     
       created(){
           this.$store.commit('GetTarefas');
-      },
-      methods:{
-        handleAddTarefa()
-        {
-          this.$store.dispatch('AddTarefa', this.campoInput); //dispatch serve para ativar as actions do vuex
-        // await this.$store.commit('AddTarefa',this.campoInput); forma que eu fiz nessa linha e na debaixo
-          this.campoInput = null;
-       //  await this.$store.commit('GetTarefas');
-        }
       }
+      
   })
 </script>

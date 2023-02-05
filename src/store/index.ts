@@ -11,7 +11,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     tarefas: [
-      { id:1, titulo: "teste1", concluido: false },
+     // { id:1, titulo: "teste1", concluido: false },
       // { id: 2, titulo: "TESTANDO", concluido: true },
       // { id: 3, titulo: "ir no mercado", concluido: false },
       // { id: 4, titulo: "teste4", concluido: false },
