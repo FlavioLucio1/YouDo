@@ -30,7 +30,12 @@
   export default {
     data: () => ({
       messages: [
-
+        {
+          id: 5,
+          data: '05/02/2023',
+          texto: `Ajustes no vuex, finalizado o curso de todo`,
+          color: 'deep-purple lighten-1',
+        },
         {
           id: 4,
           data: '04/02/2023',
