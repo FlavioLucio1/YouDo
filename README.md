@@ -1,4 +1,5 @@
-# kalled-todo
+# YouDo
+## Aplicativo To Do List para estudo de Vue
 
 ## Project setup
 ```
